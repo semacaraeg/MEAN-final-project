@@ -1,0 +1,6 @@
+<input type="text"  [(ngModel)]="searchQuery">
+<button class="btn btn-success" (click)="_movie.doSearch(searchQuery)">Search</button>
+
+<p>
+    You are searching for : {{ searchQuery }}
+</p>
