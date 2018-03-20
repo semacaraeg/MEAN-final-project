@@ -4,3 +4,4 @@
 <p>
     You are searching for : {{ searchQuery }}
 </p>
+<app-movie-list *ngFor = "let movie of _movie.movieResults" [movie] = "movie"></app-movie-list>

@@ -1,0 +1,16 @@
+<div class="movie-container" >
+     <div class="row">
+        <div class="col-sm-12 col-md-6" *ngIf ="movie.poster_path != null">
+            <a href="..." class="card clickable">
+                <div class="card-img">
+                    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}">
+                </div>
+                <div>
+                    <p class="card-text">
+                        {{movie.title}}
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

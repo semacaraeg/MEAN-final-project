@@ -13,6 +13,9 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { MovieSearchService } from './search-form/movie-search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieApiServiceService } from './movie-api-service.service';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +23,10 @@ import { MovieApiServiceService } from './movie-api-service.service';
         AboutComponent,
         HomeComponent,
         DashboardComponent,
-        SearchFormComponent
+        SearchFormComponent,
+        MovieListComponent,
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserAnimationsModule,
