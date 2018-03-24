@@ -1,15 +1,14 @@
 <clr-main-container>
   <clr-header class="header header-6">
     <div class="branding">
-      <a href="#" class="nav-link">
+      <a href="#"  class="nav-link">
         <span class="clr-icon clr-clarity-logo"></span>
         <span class="movie-title">My Movie Finder</span>
       </a>
     </div>
       <div class="header-nav" [clr-nav-level]="1">
-          <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
-          <a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"><span class="nav-text">Dashboard</span></a>
-           <a class="nav-link" href="#" [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text">Login</span></a>
+          <!--<a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>-->
+          <!--<a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"><span class="nav-text">Dashboard</span></a>-->
       </div>
     <div class="header-actions">
       <clr-dropdown>
@@ -18,8 +17,8 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <label clrDropdownItem>UserId</label>
-                <a href="..." clrDropdownItem>Log out</a>
+                <label clrDropdownItem>userId</label>
+                <a href="#" [routerLink]="['/login']" routerLinkActive="active" clrDropdownItem>Login</a>
             </clr-dropdown-menu>
         </clr-dropdown>
 

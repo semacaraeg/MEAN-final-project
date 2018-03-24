@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 export class UserService {
 
   constructor(private _http: HttpClient) { }
-  
+  currentUser : any;
 
   baseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/appUsers/";
   currentUser : any = {};

@@ -1,30 +1,20 @@
-<!--<p>-->
-<!--  User Registration-->
-<!--</p>-->
-<!--<input  type="text"  [(ngModel)]="_user.currentUser.firstName" placeholder="First Name">-->
-<!--<input  type="text"  [(ngModel)]="_user.currentUser.lastName" placeholder="Last Name">-->
-<!--<input class="email" type="text"  [(ngModel)]="_user.currentUser.email" placeholder="123@email.com">-->
-<!--<input class="password" type="password"  [(ngModel)]="_user.currentUser.password" placeholder="Password">-->
-<!--<button type="button" class="btn btn-primary" (click)="registerSubmit()">Register</button>-->
+<div class="login-wrapper">
+    <form class="login" (submit)="registerSubmit()">
+        <label class="title">
+            <h3 class="welcome">Sign-Up to</h3>
+            MyMovieFinder
+        </label>
+        <div class="login-group">
+            <input type="text" size="45" [(ngModel)]="_user.currentUser.firstName" [ngModelOptions]="{standalone:true}" placeholder="First Name">
+            <input type="text"   size="45" [(ngModel)]="_user.currentUser.lastName" [ngModelOptions]="{standalone:true}" placeholder="Last Name">
+            <input type="email"  size="45" [(ngModel)]="_user.currentUser.email" [ngModelOptions]="{standalone:true}" placeholder="Email">
+            <input type="password"  size="45" [(ngModel)]="_user.currentUser.password" [ngModelOptions]="{standalone:true}" placeholder="Password">
 
-
-<section class="form-block">
-    <label>User Registration</label>
-    <div>
-        <label>First Name: </label>
-        <input type="text" size="45" [(ngModel)]="_user.currentUser.firstName">
-    </div>
-    <div>
-        <label>Last Name</label>
-        <input type="text"   size="45" [(ngModel)]="_user.currentUser.lastName">
-    </div>
-    <div>
-        <label>E-mail </label>
-        <input type="email"  size="45" [(ngModel)]="_user.currentUser.email">
-    </div>
-    <div>
-        <label>Password</label>
-        <input type="password"  size="45" [(ngModel)]="_user.currentUser.password">
-    </div>
-    <button type="button" class="btn btn-primary" (click)="registerSubmit()">Register</button>
-</section>
+           
+            <!--<div class="error active">-->
+            <!--    Invalid user name or password-->
+            <!--</div>-->
+            <button type="submit" class="btn btn-success">Sign-Up</button>
+        </div>
+    </form>
+</div>

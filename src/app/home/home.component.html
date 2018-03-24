@@ -1,3 +1,4 @@
 <app-search-form></app-search-form>
 <h3>{{ _movie.actionLabel }}</h3>
 <app-movie-list  [movies] = "_movie.movieResults"></app-movie-list>
+<app-pager [currentPage]="_movie.currentPage" [totalPages]="_movie.totalPages" [currentMode]="_movie.currentMode" [currentQuery]="_movie.currentQuery" (changePage) ="_movie.currentPage = $event"></app-pager>

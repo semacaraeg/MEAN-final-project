@@ -7,24 +7,39 @@ import { MovieApiServiceService } from '../movie-api-service.service';
 @Injectable()
 export class MovieSearchService {
   movieResults : any;
+  movieDetails : any;
   actionLabel: string = "Popular Movies";
-
+  currentPage = 1;
+  totalPages;
+  currentMode : string;
+  currentQuery : string;
+  currentMovieId;
+  
   constructor(private _movie: MovieApiServiceService) { }
-
-  doSearch(searchQuery){
-   this._movie.getMovies(searchQuery)
-    .subscribe((res : any )=> {
-            this.movieResults = res;
-            console.log(this.movieResults);
-    })
-    this.actionLabel = "Search Results";
+  
+  doSearch(mode, page, searchQuery){
+   this.currentPage = 1;
+   this.actionLabel = "Search Results";
+   this.getMovies(mode, page, searchQuery);
   }
   
-  getPopularMovies(){
-   this._movie.getPopularMovies()
+  getMovies(mode, page, searchQuery){
+   this.currentMode = mode;
+   this.currentQuery = searchQuery;
+   this._movie.getMovies2(this.currentMode, this.currentPage, this.currentQuery)
     .subscribe((res : any )=> {
-            this.movieResults = res;
+            this.totalPages = res.total_pages;
+            this.movieResults = res.results;
             console.log(this.movieResults);
+    })
+  }
+  
+  getMovieDetails(mode, page){
+    this.currentMode = mode;
+   this._movie.getMovies2(this.currentMode, this.currentPage, this.currentMovieId)
+    .subscribe((res : any )=> {
+            this.movieDetails = res;
+            console.log(this.movieDetails);
     })
   }
   

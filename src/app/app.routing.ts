@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
 
 
 export const ROUTES: Routes = [
@@ -19,7 +20,8 @@ export const ROUTES: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent}
+    {path: 'register', component: RegisterComponent},
+     {path: 'movie', component: MoviedetailsComponent}
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);

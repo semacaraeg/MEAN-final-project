@@ -15,7 +15,8 @@ export class HomeComponent {
   constructor(private _movie : MovieSearchService) { }
 
   ngOnInit() {
-      this._movie.getPopularMovies();
+      //this._movie.getPopularMovies();
+      this._movie.getMovies("popular", 1);
   }
 
 }

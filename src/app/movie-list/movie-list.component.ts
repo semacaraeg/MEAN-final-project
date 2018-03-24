@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {MovieSearchService} from '../search-form/movie-search.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -8,9 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MovieListComponent implements OnInit {
   @Input() movies;
   
-  constructor() { }
+  
+  constructor(private _movie : MovieSearchService) { }
 
   ngOnInit() {
+  }
+  
+  setMovieId(id){
+    console.log(id);
+    this._movie.currentMovieId = id;
   }
 
 }

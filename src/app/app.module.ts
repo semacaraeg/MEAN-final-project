@@ -17,6 +17,8 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
+import { PagerComponent } from './pager/pager.component';
+import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { UserService } from './user.service';
         SearchFormComponent,
         MovieListComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        PagerComponent,
+        MoviedetailsComponent
     ],
     imports: [
         BrowserAnimationsModule,

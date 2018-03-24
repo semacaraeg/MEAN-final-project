@@ -1,13 +1,24 @@
-<div>
+<div class="login-wrapper">
+    <form class="login" (submit)="loginSubmit()">
         <label class="title">
             <h3 class="welcome">Welcome to</h3>
             MyMovieFinder
-            <h5 class="hint">Use your e-mail to sign in or register now</h5>
+            <h5 class="hint">Use your email to sign in or register now</h5>
         </label>
         <div class="login-group">
-            <input class="email" type="text"  [(ngModel)]="_user.currentUser.email" placeholder="Username">
-            <input class="password" type="password"  [(ngModel)]="_user.currentUser.password" placeholder="Password">
-            <button type="button" class="btn btn-primary" (click)="loginSubmit()">Login</button>
+            <input class="email" type="text"  [(ngModel)]="_user.currentUser.email" [ngModelOptions]="{standalone:true}" placeholder="Email">
+            <input class="password" type="password"  [(ngModel)]="_user.currentUser.password" [ngModelOptions]="{standalone:true}" placeholder="Password">
+            <div class="checkbox">
+                <input type="checkbox" id="rememberme">
+                <label for="rememberme">
+                    Remember me
+                </label>
+            </div>
+            <!--<div class="error active">-->
+            <!--    Invalid user name or password-->
+            <!--</div>-->
+            <button type="submit" class="btn btn-primary">Login</button>
             <a href="#" [routerLink]="['/register']"  class="signup">Register</a>
         </div>
+    </form>
 </div>
