@@ -1,16 +1,49 @@
-<div class="movie-container" >
-     <div class="row">
-        <div class="col-sm-12 col-md-6" *ngIf ="movie.poster_path != null">
-            <a href="..." class="card clickable">
-                <div class="card-img">
-                    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}">
+<!--<div class="movie-container" *ngFor="let movie of movies">-->
+<!--    <div class="row flex-items" *ngIf ="movie.poster_path != null">-->
+<!--        <div class="col-xs">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header">-->
+<!--                    {{ movie.title }}-->
+<!--                </div>-->
+<!--                <div class="card-block">-->
+<!--                    <div class="card-img">-->
+<!--                        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}">-->
+<!--                    </div>-->
+<!--                    <div class="card-text">-->
+<!--                       {{ movie.overview }}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card-footer">-->
+<!--                    <button class="btn btn-sm btn-link">Details</button>-->
+<!--                    <button class="btn btn-sm btn-link">Footer Action 2</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="centered">
+    <section class="cards">
+         <div class="card" *ngFor="let movie of movies">
+                
+                <div class="card-block">
+                   
+                    <div class="card-img">
+                        <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
+                    </div>
+                     <div class="card-header">
+                        {{ movie.title }}
+                    </div>
+                    <div class="card-text">
+                       <p>
+                          {{ (movie.overview.length>300)? (movie.overview | slice:0:300)+'...':(movie.overview) }}
+                       </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="card-text">
-                        {{movie.title}}
-                    </p>
+                <div class="card-footer">
+                    <button class="btn btn-sm btn-link">More Info</button>
+                    <button class="btn btn-sm btn-link"></button>
                 </div>
-            </a>
-        </div>
-    </div>
+            </div>
+    </section>
 </div>

@@ -16,6 +16,7 @@ import { MovieApiServiceService } from './movie-api-service.service';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserService } from './user.service';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,7 @@ import { RegisterComponent } from './register/register.component';
         ROUTING,
         HttpClientModule
     ],
-    providers: [MovieSearchService, MovieApiServiceService],
+    providers: [MovieSearchService, MovieApiServiceService, UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

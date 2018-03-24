@@ -5,9 +5,9 @@
             <h5 class="hint">Use your e-mail to sign in or register now</h5>
         </label>
         <div class="login-group">
-            <input class="username" type="text"  [(ngModel)]="user.username" placeholder="Username">
-            <input class="password" type="password"  [(ngModel)]="user.password" placeholder="Password">
-            <button type="button" class="btn btn-primary" (click)="getUserValues()">Login</button>
-            <a href="javascript://" class="signup">Register</a>
+            <input class="email" type="text"  [(ngModel)]="_user.currentUser.email" placeholder="Username">
+            <input class="password" type="password"  [(ngModel)]="_user.currentUser.password" placeholder="Password">
+            <button type="button" class="btn btn-primary" (click)="loginSubmit()">Login</button>
+            <a href="#" [routerLink]="['/register']"  class="signup">Register</a>
         </div>
 </div>

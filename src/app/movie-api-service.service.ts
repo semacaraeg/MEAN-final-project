@@ -12,6 +12,8 @@ export class MovieApiServiceService {
   
   movieApiUrl = "https://api.themoviedb.org/3/search/movie?api_key=319e15d525fb567698dd03363cc456ac&query=";
   //apiKey = "319e15d525fb567698dd03363cc456ac";
+  popularApi = "https://api.themoviedb.org/3/movie/popular?api_key=319e15d525fb567698dd03363cc456ac&language=en-US&page=1";
+  
   fullApiUrl : string;
   
     getMovies(searchQuery){
@@ -22,6 +24,16 @@ export class MovieApiServiceService {
             return res.results;
           })
         )
+      }
+      
+      getPopularMovies(){
+       return this.http.get(this.popularApi)
+       .pipe(
+          map( (res: any) => {
+            return res.results;
+          })
+        )
+      } 
       }
 
 }

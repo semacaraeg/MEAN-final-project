@@ -1,7 +1,12 @@
-<input type="text"  [(ngModel)]="searchQuery">
-<button class="btn btn-success" (click)="_movie.doSearch(searchQuery)">Search</button>
+<div class="subnav">
+    <form class="search">
+        <label for="search_input">
+            <clr-icon shape="search" size="24"></clr-icon>
+            <input type="text"  [(ngModel)]="searchQuery" [ngModelOptions]="{standalone:true}" placeholder="Search for movies..." (keyup.enter)="_movie.doSearch(searchQuery)">
+        </label>
+        <!--<button class="btn btn-success" (click)="_movie.doSearch(searchQuery)">Search</button>-->
+    </form>
+</div>
 
-<p>
-    You are searching for : {{ searchQuery }}
-</p>
-<app-movie-list *ngFor = "let movie of _movie.movieResults" [movie] = "movie"></app-movie-list>
+
+

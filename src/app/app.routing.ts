@@ -14,7 +14,7 @@ import { RegisterComponent } from './register/register.component';
 
 
 export const ROUTES: Routes = [
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'about', component: AboutComponent},
     {path: 'dashboard', component: DashboardComponent},

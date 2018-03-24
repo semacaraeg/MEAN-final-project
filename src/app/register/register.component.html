@@ -1,3 +1,30 @@
-<p>
-  register works!
-</p>
+<!--<p>-->
+<!--  User Registration-->
+<!--</p>-->
+<!--<input  type="text"  [(ngModel)]="_user.currentUser.firstName" placeholder="First Name">-->
+<!--<input  type="text"  [(ngModel)]="_user.currentUser.lastName" placeholder="Last Name">-->
+<!--<input class="email" type="text"  [(ngModel)]="_user.currentUser.email" placeholder="123@email.com">-->
+<!--<input class="password" type="password"  [(ngModel)]="_user.currentUser.password" placeholder="Password">-->
+<!--<button type="button" class="btn btn-primary" (click)="registerSubmit()">Register</button>-->
+
+
+<section class="form-block">
+    <label>User Registration</label>
+    <div>
+        <label>First Name: </label>
+        <input type="text" size="45" [(ngModel)]="_user.currentUser.firstName">
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input type="text"   size="45" [(ngModel)]="_user.currentUser.lastName">
+    </div>
+    <div>
+        <label>E-mail </label>
+        <input type="email"  size="45" [(ngModel)]="_user.currentUser.email">
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password"  size="45" [(ngModel)]="_user.currentUser.password">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="registerSubmit()">Register</button>
+</section>
