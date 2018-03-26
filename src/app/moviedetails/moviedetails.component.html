@@ -1,26 +1,36 @@
 
 
-<div class="modal">
-    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-             <div class="card-block">
-                    <div class="card-img">
+<!--<clr-modal class="modal" [(clrModalOpen)]="basic">-->
+<!--    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">-->
+<!--        <div class="modal-content">-->
+<!--             <div class="card-block">-->
+<!--                    <div class="card-img">-->
                         <!--<img src="https://image.tmdb.org/t/p/w500/{{_movie.movieDetails.poster_path}}">-->
-                    </div>
-                     <div class="card-header">
-                        {{ _movie.movieDetails.title }}
-                    </div>
-                    <div class="card-text">
-                       <p>
-                          {{ _movie.movieDetails.overview }}
-                       </p>
-                    </div>
-                </div>
-        </div>
-        <div class="modal-footer">
+<!--                    </div>-->
+<!--                     <div class="card-header">-->
+<!--                        {{ _movie.movieDetails.title }}-->
+<!--                    </div>-->
+<!--                    <div class="card-text">-->
+<!--                       <p>-->
+<!--                          {{ _movie.movieDetails.overview }}-->
+<!--                       </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
                 <!--<button class="btn btn-outline" type="button">Close</button>-->
-                <button class="btn btn-success" type="button" (click)="closeWindow()">Back</button>
-            </div>
+<!--                <button class="btn btn-success" type="button" (click)="exit()">Back</button>-->
+<!--            </div>-->
+<!--    </div>-->
+<!--</clr-modal>-->
+
+<clr-modal [(clrModalOpen)]="basic">
+    <h3 class="modal-title">I have a nice title</h3>
+    <div class="modal-body">
+        <p>But not much to say...</p>
     </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true"></div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+    </div>
+</clr-modal>

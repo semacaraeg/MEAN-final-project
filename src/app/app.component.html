@@ -17,8 +17,13 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <label clrDropdownItem>userId</label>
-                <a href="#" [routerLink]="['/login']" routerLinkActive="active" clrDropdownItem>Login</a>
+                <div *ngIf = "isLoggedIn">
+                <label clrDropdownItem>Hi, {{ _user.name }}</label>
+                <a href="#" clrDropdownItem>My Favorites</a>
+                <button  clrDropdownItem (click)="logout()"> Logout </button>  
+                </div>
+                <!--<label clrDropdownItem *ngIf = "_user.isLoggedIn">Hi, {{ _user.name }}</label>-->
+                <a href="#" [routerLink]="['/login']"  routerLinkActive="active" clrDropdownItem [style.visibility]="isLoggedIn ? 'hidden' : 'visible'"> Login </a>
             </clr-dropdown-menu>
         </clr-dropdown>
 

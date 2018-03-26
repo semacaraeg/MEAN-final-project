@@ -8,7 +8,8 @@ import { MovieSearchService } from '../search-form/movie-search.service';
   styleUrls: ['./moviedetails.component.scss']
 })
 export class MoviedetailsComponent implements OnInit {
-
+  basic : boolean = false;
+  
   constructor(private _movie : MovieSearchService) { }
 
   ngOnInit() {
@@ -16,6 +17,11 @@ export class MoviedetailsComponent implements OnInit {
   }
 
   getMovieDetails(){
-    this._movie.getMovieDetails("movie", 1, this._movie.currentMovieId);
+    this._movie.getMovieDetails("movie", 1);
+    this.basic = true;
+  }
+  
+  exit(){
+    this.basic = false;
   }
 }

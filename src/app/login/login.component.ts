@@ -12,22 +12,24 @@ export class LoginComponent implements OnInit {
   
   constructor(private _user : UserService, private _router : Router) { }
   
-  
-  
   ngOnInit() {
   }
   
   loginSubmit(){
     this._user.login()
-      .subscribe( res => {
-        console.log(res.userId, "THIS IS userid");
-        console.log(res.token, "THIS IS token");
-        sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('userId', res.userId);
-        this._router.navigate(['/home']);
-      })
-      
+      .subscribe( 
+        (res : any) => {
+        console.log(res, "user from LoginComponent");
+        //console.log(res.token, "THIS IS token");
+          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem('userId', res.userId);
+          this._user.loginStatus(true);
+          this._user.name = res.userData.firstName;
+          this._user.getUser();
+          this._router.navigate(['/home']);
+      },
+      err => console.log(err)
+       )
   }
-
 
 }
