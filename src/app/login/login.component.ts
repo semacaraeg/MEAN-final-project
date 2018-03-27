@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userId', res.userId);
           this._user.loginStatus(true);
           this._user.name = res.userData.firstName;
+          this._user.currentUserFavorites = res.userData.favorites;
           this._user.getUser();
           this._router.navigate(['/home']);
       },

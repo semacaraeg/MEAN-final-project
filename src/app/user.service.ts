@@ -5,9 +5,9 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class UserService {
   
-  //isLoggedIn : boolean = false;
+  
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  isFavorite: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isFavorite: boolean;
   
   name : string = "";
   userControl : string = "Login";
@@ -18,6 +18,7 @@ export class UserService {
   faveBaseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/favorites/";
   currentUser : any = {};
   faveMovie : any ={};
+  currentUserFavorites = [];
   
   login(){
       return this._http.post(this.baseUrl + "login", this.currentUser);
@@ -49,6 +50,11 @@ export class UserService {
      console.log(this.faveMovie, "info from user Service");
     //return this._http.post(this.baseUrl + userId + "/favorites?access_token=" + accessToken, this.faveMovie);
     return this._http.post(this.faveBaseUrl, this.faveMovie);
+  }
+  
+  removeFromFavorites(id){
+     var accessToken = sessionStorage.getItem("token");
+     return this._http.post(this.faveBaseUrl + id + "?access_token=" + accessToken, this.faveMovie);
   }
   
   getUserFavorites(){

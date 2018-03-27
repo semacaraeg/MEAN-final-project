@@ -34,6 +34,17 @@ export class MovieSearchService {
     })
   }
   
+  getMovies2(mode, page, searchQuery){
+   this.currentMode = mode;
+   this.currentQuery = searchQuery;
+   this._movie.getMovies3(this.currentMode, this.currentPage, this.currentQuery)
+    .subscribe((res : any )=> {
+            //this.totalPages = res.total_pages;
+            this.movieResults = res;
+            console.log(this.movieResults);
+    })
+  }
+  
   getMovieDetails(mode, page, movieId){
     this.currentMode = mode;
    this._movie.getMovies2(this.currentMode, this.currentPage, movieId)

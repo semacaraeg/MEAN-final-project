@@ -18,6 +18,7 @@ export class PagerComponent implements OnInit {
   constructor(private _movie : MovieSearchService) { }
 
   ngOnInit() {
+    this.changePage.emit(this.currentPage);
   }
   
   next(){

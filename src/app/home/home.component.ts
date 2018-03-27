@@ -16,7 +16,7 @@ export class HomeComponent {
 
   ngOnInit() {
       //this._movie.getPopularMovies();
-      this._movie.getMovies("popular", 1, "");
+      this._movie.getMovies2("popular", 1, "");
   }
 
 }

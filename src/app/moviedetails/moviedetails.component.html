@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-sm btn-link" (click)="getMovieDetails(movie.movieId)" >More Info</button>
-                    <button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="saveToFavorites(movie.title, movie.id)">Remove from Favorites</button>
+                    <button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="removeFromFavorites(movie.id)">Remove from Favorites</button>
                 </div>
             </div>
     </section>

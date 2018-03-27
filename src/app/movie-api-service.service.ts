@@ -45,5 +45,35 @@ export class MovieApiServiceService {
               })
             )
       }
+      
+       getMovies3(mode : string, page : number, searchQuery : any){
+        
+        if(mode == "search"){
+          this.fullApiUrl = this.movieApiUrl + searchQuery + "&page=" + page;      
+        }else if(mode == "movie"){
+          this.fullApiUrl = this.moviedetail + searchQuery + "?api_key=319e15d525fb567698dd03363cc456ac&append_to_response=videos";
+        }
+        else{
+          this.fullApiUrl = this.popularApi+page;
+        }
+        console.log(this.fullApiUrl, "URLLLLLLL");
+         return this.http.get(this.fullApiUrl)
+           .pipe(
+              map( (res: any) => {
+                return res.results.map( movie =>{
+                 return{ 
+                    id: movie.id,
+                    overview: movie.overview,
+                    title: movie.title,
+                    poster_path: movie.poster_path,
+                    vote_average: movie.vote_average,
+                    release_date: movie.release_date,
+                    isFavorite : false
+                 }
+                }
+                  );
+              })
+            )
+      }
 
 }

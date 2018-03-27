@@ -31,4 +31,9 @@ export class MoviedetailsComponent implements OnInit {
     this.basic = true;
   }
   
+  removeFromFavorites(id){
+    this._user.removeFromFavorites(id)
+      .subscribe( res => console.log(res))
+  }
+  
 }
