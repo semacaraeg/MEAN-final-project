@@ -1,36 +1,48 @@
-
-
-<!--<clr-modal class="modal" [(clrModalOpen)]="basic">-->
-<!--    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">-->
-<!--        <div class="modal-content">-->
-<!--             <div class="card-block">-->
-<!--                    <div class="card-img">-->
-                        <!--<img src="https://image.tmdb.org/t/p/w500/{{_movie.movieDetails.poster_path}}">-->
-<!--                    </div>-->
-<!--                     <div class="card-header">-->
-<!--                        {{ _movie.movieDetails.title }}-->
-<!--                    </div>-->
-<!--                    <div class="card-text">-->
-<!--                       <p>-->
-<!--                          {{ _movie.movieDetails.overview }}-->
-<!--                       </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-                <!--<button class="btn btn-outline" type="button">Close</button>-->
-<!--                <button class="btn btn-success" type="button" (click)="exit()">Back</button>-->
-<!--            </div>-->
-<!--    </div>-->
-<!--</clr-modal>-->
-
-<clr-modal [(clrModalOpen)]="basic">
-    <h3 class="modal-title">I have a nice title</h3>
+<div class="centered">
+    <section class="cards">
+         <div class="card" *ngFor="let movie of userFavoriteMovies">
+                
+                <div class="card-block">
+                   
+                    <div class="card-img">
+                        <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
+                    </div>
+                     <div class="card-header">
+                        {{ movie.title }}
+                    </div>
+                    <div class="card-text">
+                       <p>
+                          {{ movie.overview }}
+                       </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-sm btn-link" (click)="getMovieDetails(movie.movieId)" >More Info</button>
+                    <button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="saveToFavorites(movie.title, movie.id)">Remove from Favorites</button>
+                </div>
+            </div>
+    </section>
+</div>
+<clr-modal [(clrModalOpen)]="basic" *ngIf="_movie.movieDetails != ''">
+    <h3 class="modal-title">{{ _movie.movieDetails.title }}</h3>
     <div class="modal-body">
-        <p>But not much to say...</p>
+        <div class="card-block">
+            <div class="card-img">
+                <img src="https://image.tmdb.org/t/p/w500/{{_movie.movieDetails.poster_path}}">
+            </div>
+             <div class="card-header">
+                {{ _movie.movieDetails.title }}
+                <a href="{{ _movie.movieDetails.homepage }}">Movie Homepage </a>
+            </div>
+            <div class="card-text">
+               <p>
+                  {{ _movie.movieDetails.overview }}
+               </p>
+            </div>
+        </div><!--.card-block-->
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+        <button type="button" class="btn btn-outline-success" (click)="basic = false">Close</button>
+        <!--<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>-->
     </div>
 </clr-modal>

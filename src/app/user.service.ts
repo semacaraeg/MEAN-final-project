@@ -7,12 +7,17 @@ export class UserService {
   
   //isLoggedIn : boolean = false;
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isFavorite: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  
   name : string = "";
   userControl : string = "Login";
+  
   constructor(private _http: HttpClient) { }
  
   baseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/appUsers/";
+  faveBaseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/favorites/";
   currentUser : any = {};
+  faveMovie : any ={};
   
   login(){
       return this._http.post(this.baseUrl + "login", this.currentUser);
@@ -37,5 +42,18 @@ export class UserService {
     console.log(userId, this.isLoggedIn, "USER ID in USERSERVICE");
   }
   
+  addToFavorites(){
+    var userId = sessionStorage.getItem("userId");
+    var accessToken = sessionStorage.getItem("token");
+    this.faveMovie.userId = userId;
+     console.log(this.faveMovie, "info from user Service");
+    //return this._http.post(this.baseUrl + userId + "/favorites?access_token=" + accessToken, this.faveMovie);
+    return this._http.post(this.faveBaseUrl, this.faveMovie);
+  }
   
+  getUserFavorites(){
+    var userId = sessionStorage.getItem("userId");
+    var accessToken = sessionStorage.getItem("token");
+    return this._http.get( this.baseUrl + userId + "/favorites?access_token=" + accessToken);
+  }
 }

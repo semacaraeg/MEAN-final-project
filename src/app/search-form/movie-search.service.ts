@@ -7,7 +7,7 @@ import { MovieApiServiceService } from '../movie-api-service.service';
 @Injectable()
 export class MovieSearchService {
   movieResults : any;
-  movieDetails : any;
+  movieDetails : any = "";
   actionLabel: string = "Popular Movies";
   currentPage = 1;
   totalPages;
@@ -34,9 +34,9 @@ export class MovieSearchService {
     })
   }
   
-  getMovieDetails(mode, page){
+  getMovieDetails(mode, page, movieId){
     this.currentMode = mode;
-   this._movie.getMovies2(this.currentMode, this.currentPage, this.currentMovieId)
+   this._movie.getMovies2(this.currentMode, this.currentPage, movieId)
     .subscribe((res : any )=> {
             this.movieDetails = res;
             console.log(this.movieDetails);
