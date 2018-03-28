@@ -1,0 +1,39 @@
+<button class="btn btn-sm btn-link" (click)="getMovieDetails()" >More Info</button>
+<button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="saveToFavorites(movie);"  [style.display]="(checkIfMovieIsFavorite(movie) || isFavorite === true) ? 'none' : 'inline-block'" >Add to Favorites</button>
+<button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="deleteFavorite(movie)" [style.display]=" (isFavorite || checkIfMovieIsFavorite(movie))  ? 'inline-block' : 'none'">Remove from Favorites</button>
+
+<clr-modal [(clrModalOpen)]="_movie.basic" *ngIf="_movie.movieDetails != ''" [clrModalSize]="'xl'">
+    <h3 class="modal-title">{{ _movie.movieDetails.title }}</h3>
+    <div class="modal-body">
+        <div>
+            <div>
+                <img src="https://image.tmdb.org/t/p/w500/{{_movie.movieDetails.poster_path}}">
+            </div>
+             <div>
+                <h4>{{ _movie.movieDetails.title }}</h4>
+               <p>
+                   <label>Released on: {{_movie.movieDetails.release_date}}</label><br>
+                   <label>Rating: {{_movie.movieDetails.vote_average}}</label><br>
+                   <a href="{{ _movie.movieDetails.homepage }}">Go to Movie Homepage </a>
+                   
+               </p> 
+            </div>
+            <div>
+               <h5>Summary</h5>
+               <p>
+                  {{ _movie.movieDetails.overview }}
+               </p>
+            </div>
+            <div *ngIf="_movie.movieDetails.videos.results.length > 0">
+                <h4>Watch Trailer</h4><br>
+                <iframe *ngIf="_movie.movieDetails.videos.results[0].key != null" [src]="_sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + _movie.movieDetails.videos.results[0].key)" frameborder="0" allowfullscreen width="450" height="300"></iframe>
+            <!--<iframe type="text/html" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen=""></iframe>-->
+            </div>
+            
+        </div><!--.card-block-->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="exit()">Close</button>
+        <!--<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>-->
+    </div>
+</clr-modal>

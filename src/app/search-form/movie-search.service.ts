@@ -14,6 +14,7 @@ export class MovieSearchService {
   currentMode : string;
   currentQuery : string;
   currentMovieId;
+  basic : boolean = false;
   
   constructor(private _movie: MovieApiServiceService) { }
   

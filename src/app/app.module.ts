@@ -19,6 +19,9 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
 import { PagerComponent } from './pager/pager.component';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
+import { MovieComponent } from './movie/movie.component';
+import { MovieCardFooterComponent } from './movie-card-footer/movie-card-footer.component';
+import { MovieFavoritesComponent } from './movie-favorites/movie-favorites.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +34,10 @@ import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
         LoginComponent,
         RegisterComponent,
         PagerComponent,
-        MoviedetailsComponent
+        MoviedetailsComponent,
+        MovieComponent,
+        MovieCardFooterComponent,
+        MovieFavoritesComponent
     ],
     imports: [
         BrowserAnimationsModule,

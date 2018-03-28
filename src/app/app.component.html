@@ -19,7 +19,7 @@
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <div *ngIf = "isLoggedIn">
                 <label clrDropdownItem>Hi, {{ _user.name }}</label>
-                <a href="#" clrDropdownItem  [routerLink]="['/movie']"  routerLinkActive="active" >My Favorites</a>
+                <a href="#" clrDropdownItem  [routerLink]="['/favorites']"  routerLinkActive="active" >My Favorites</a>
                 <button  clrDropdownItem (click)="logout()"> Logout </button>  
                 </div>
                 <!--<label clrDropdownItem *ngIf = "_user.isLoggedIn">Hi, {{ _user.name }}</label>-->

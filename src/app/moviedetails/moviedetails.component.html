@@ -1,48 +1,35 @@
-<div class="centered">
-    <section class="cards">
-         <div class="card" *ngFor="let movie of userFavoriteMovies">
-                
-                <div class="card-block">
-                   
-                    <div class="card-img">
-                        <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
-                    </div>
-                     <div class="card-header">
-                        {{ movie.title }}
-                    </div>
-                    <div class="card-text">
-                       <p>
-                          {{ movie.overview }}
-                       </p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-sm btn-link" (click)="getMovieDetails(movie.movieId)" >More Info</button>
-                    <button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="removeFromFavorites(movie.id)">Remove from Favorites</button>
-                </div>
-            </div>
-    </section>
-</div>
-<clr-modal [(clrModalOpen)]="basic" *ngIf="_movie.movieDetails != ''">
-    <h3 class="modal-title">{{ _movie.movieDetails.title }}</h3>
+<clr-modal [(clrModalOpen)]="_movie.basic" *ngIf="movieDetailResults != ''" [clrModalSize]="'xl'">
+    <h3 class="modal-title">{{ movieDetailResults.title }}</h3>
     <div class="modal-body">
-        <div class="card-block">
-            <div class="card-img">
+        <div>
+            <div>
                 <img src="https://image.tmdb.org/t/p/w500/{{_movie.movieDetails.poster_path}}">
             </div>
-             <div class="card-header">
-                {{ _movie.movieDetails.title }}
-                <a href="{{ _movie.movieDetails.homepage }}">Movie Homepage </a>
-            </div>
-            <div class="card-text">
+             <div>
+                <h4>{{ movieDetailResults.title }}</h4>
                <p>
-                  {{ _movie.movieDetails.overview }}
+                   <label>Released on: {{movieDetailResults.release_date}}</label><br>
+                   <label>Rating: {{movieDetailResults.vote_average}}</label><br>
+                   <a href="{{ _movie.movieDetails.homepage }}">Go to Movie Homepage </a>
+                   
+               </p> 
+            </div>
+            <div>
+               <h5>Summary</h5>
+               <p>
+                  {{movieDetailResults.overview }}
                </p>
             </div>
+            <!--<div *ngIf="_movie.movieDetails.videos.results.length > 0">-->
+            <!--    <h4>Watch Trailer</h4><br>-->
+            <!--    <iframe *ngIf="_movie.movieDetails.videos.results[0].key != null" [src]="_sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + _movie.movieDetails.videos.results[0].key)" frameborder="0" allowfullscreen width="450" height="300"></iframe>-->
+            <!--<iframe type="text/html" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen=""></iframe>-->
+            <!--</div>-->
+            
         </div><!--.card-block-->
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" (click)="basic = false">Close</button>
+        <button type="button" class="btn btn-outline-success" (click)="exit()">Close</button>
         <!--<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>-->
     </div>
 </clr-modal>

@@ -12,7 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
-
+import { MovieFavoritesComponent } from './movie-favorites/movie-favorites.component';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,7 +21,8 @@ export const ROUTES: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-     {path: 'movie', component: MoviedetailsComponent}
+    {path: 'moviedetails', component: MoviedetailsComponent}
+    {path: 'favorites', component: MovieFavoritesComponent}
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);

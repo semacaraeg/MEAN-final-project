@@ -17,8 +17,8 @@ export class UserService {
   baseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/appUsers/";
   faveBaseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/favorites/";
   currentUser : any = {};
-  faveMovie : any ={};
-  currentUserFavorites = [];
+  faveMovie : any ={isFavorite : false};
+  userFavoriteMovies : any;
   
   login(){
       return this._http.post(this.baseUrl + "login", this.currentUser);
@@ -54,7 +54,10 @@ export class UserService {
   
   removeFromFavorites(id){
      var accessToken = sessionStorage.getItem("token");
-     return this._http.post(this.faveBaseUrl + id + "?access_token=" + accessToken, this.faveMovie);
+     //console.log(this.baseUrl + userId + "/favorites/" + id +"?access_token=" + accessToken);
+     //return this._http.post(this.baseUrl + userId + "/favorites/" + id +"?access_token=" + accessToken);
+     return this._http.delete(this.faveBaseUrl + id +"?access_token=" + accessToken);
+     
   }
   
   getUserFavorites(){

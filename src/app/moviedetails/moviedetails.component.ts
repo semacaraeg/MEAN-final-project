@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { MovieSearchService } from '../search-form/movie-search.service';
 import { UserService} from '../user.service';
 
@@ -8,32 +8,22 @@ import { UserService} from '../user.service';
   styleUrls: ['./moviedetails.component.scss']
 })
 export class MoviedetailsComponent implements OnInit {
-  basic : boolean = false;
-  userFavoriteMovies : any; 
   
-  constructor(private _movie : MovieSearchService, private _user : UserService) { }
+  @Input() movieId;
+  lastMode = this._movie.currentMode;
+  movieDetailResults : any;
+  
+  constructor(private _movie : MovieSearchService, private _user : UserService) { 
+     this.movieDetailResults = this._movie.movieDetails;
+  }
 
   ngOnInit() {
-    this. getFavorites();
+    //this._movie.getMovieDetails("movie", 1, this.movieId);
   }
 
-  getFavorites(){
-    this._user.getUserFavorites()
-      .subscribe((res : any )=> {
-            //console.log(res);
-            this.userFavoriteMovies = res;
-            console.log(this.userFavoriteMovies);
-    })
-  }
-  
-  getMovieDetails(movieId){
-    this._movie.getMovieDetails("movie", 1, movieId);
-    this.basic = true;
-  }
-  
-  removeFromFavorites(id){
-    this._user.removeFromFavorites(id)
-      .subscribe( res => console.log(res))
+   exit(){
+    this._movie.basic = false;
+    this._movie.currentMode = this.lastMode;
   }
   
 }
