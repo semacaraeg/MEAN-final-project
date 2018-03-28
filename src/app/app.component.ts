@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { UserService } from './user.service';
 import { MovieSearchService } from './search-form/movie-search.service';
-
 
 @Component({
     selector: 'my-app',
@@ -17,6 +16,7 @@ export class AppComponent implements OnInit {
     ngOnInit(){
         this._user.isLoggedIn
             .subscribe( logState => this.isLoggedIn = logState);
+            
     }
     
     logout(){
@@ -28,11 +28,16 @@ export class AppComponent implements OnInit {
           this._user.loginStatus(false);
           this._user.currentUser = {};
           this._movie.movieResults = "";
+          this._movie.movieDetails = "";
+          this._movie.currentPage = 1;
+          this._movie.currentMode = "popular";
           console.log(this._user.getUser());
-          this._router.navigate(['/home']);
-        //   this._router.reload();
+          this._router.navigate(['/login']);
+        // this._router.reload();
       },
       err => console.log(err)
        )
   }
+  
+      
 }

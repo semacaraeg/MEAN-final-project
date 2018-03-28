@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+.cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.card {
+    flex: 0 1 calc(50% - 1em);
+}
+
+.card-img img{
+    width: calc(40% - 1em);
+    float: left;
+    display: block;
+    max-height: 240px;
+}
+.card-img-lg img{
+    width: calc(60% - 1em);
+    float: left;
+    display: block;
+    max-height: 240px;
+}
+.card-header{
+    text-indent: 20px;
+}
+
+.card-text{
+    min-height: 160px;
+    height: auto;
+    margin-left: 50px;
+}
+
+.card-text  p{
+    font-size: 12px;
+    text-indent: 20px;
+    text-align: justify;
+}
+
+.card-footer{
+    display: block;
+}
+
+
+@media screen and (min-width: 40em) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+ 
+    .card {
+        flex: 0 1 calc(50% - 1em);
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .card {
+        flex: 0 1 calc(50% - 1em);
+    }
+}

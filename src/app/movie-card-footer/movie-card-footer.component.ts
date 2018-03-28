@@ -19,7 +19,7 @@ export class MovieCardFooterComponent implements OnInit {
   movieId : number;
   //userFavoriteMovies : any; 
   faveModelId : any;
- // isRemoved : boolean = true;
+  isRemoved : boolean;
   
   constructor(private _movie : MovieSearchService, private _user: UserService, private _sanitizer: DomSanitizer) { }
 
@@ -51,19 +51,26 @@ export class MovieCardFooterComponent implements OnInit {
     if(this.checkIfMovieIsFavorite(movie)){
       console.log("movie is already favorite");
      }else{
+    console.log(this._user.currentUserFavorites, "user favorites");   
     this.isFavorite = true;
     this._user.faveMovie.title = movie.title;
     this._user.faveMovie.movieId = movie.id;
     this._user.faveMovie.overview = movie.overview;
     this._user.faveMovie.poster_path = movie.poster_path;
     this._user.addToFavorites()
-      .subscribe( res => console.log(res))
+      .subscribe( res => {
+        console.log(res.id, "model fave id")
+        this._user.currentUserFavorites.push(res);
+      })
    }
   }
   
 
   deleteFavorite(movie){
-    console.log(this.isFavorite, "isFavorite when click delete");
+    if(this.isFavorite == ""){
+      this.isRemoved = true;
+    }
+    //console.log(this.isFavorite, "isFavorite when click delete");
     this.isFavorite = false;
    
     let movieId;
@@ -90,9 +97,10 @@ export class MovieCardFooterComponent implements OnInit {
       //console.log(this.faveModelId);
       this._user.removeFromFavorites(this.faveModelId)
       .subscribe( res => {
-        this._user.userFavoriteMovies.filter(movie => movie.id == this.faveModelId);
+       //this._user.userFavoriteMovies.splice(res, 1);
         console.log(res , "REMOVE");
       })
+       this._user.userFavoriteMovies.filter(movie => movie.id == this.faveModelId);
   }
  
   checkIfMovieIsFavorite: boolean (movie){
@@ -102,7 +110,6 @@ export class MovieCardFooterComponent implements OnInit {
     }else{
       movieId = movie.id;
     }
-    
     return this._user.currentUserFavorites.some( (p) =>{
       return p.movieId === movieId;
     });
@@ -111,4 +118,7 @@ export class MovieCardFooterComponent implements OnInit {
    this.safeUrl=this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+ videoUrl);
    console.log(this.safeUrl);
  }
+ 
+ 
+
 }

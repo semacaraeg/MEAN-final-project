@@ -15,7 +15,7 @@ export class MovieListComponent implements OnInit {
   constructor(private _movie : MovieSearchService, private _user: UserService, private _router : Router, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-   
+    //this._movie.getMovies2("popular", 1, "");
   }
   
   

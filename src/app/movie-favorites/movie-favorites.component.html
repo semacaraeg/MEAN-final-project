@@ -15,14 +15,17 @@
 <!--        </div>-->
 <!--    </section>-->
 <!--</div>-->
-
+<h2>My Favorite Movies</h2>
 <div class="row">
+    
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" *ngFor="let movie of userFavoriteMovies">
-        
             <div class="card-img">
                 <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
-                <p class="card-text">{{movie.title}}</p>
             </div>
+            <div class="card-block">
+                 <p class="card-text">{{movie.title}}</p>
+            </div>
+           
     
     </div>
 </div>
