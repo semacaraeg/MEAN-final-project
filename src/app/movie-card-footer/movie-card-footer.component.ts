@@ -14,7 +14,7 @@ export class MovieCardFooterComponent implements OnInit {
   @Input() mode : string;
 
   lastMode = this._movie.currentMode;
-  //isFavorite : boolean = false;
+  isFavorite : boolean = false;
   safeUrl : any;
   movieId : number;
   //userFavoriteMovies : any;
@@ -26,7 +26,7 @@ export class MovieCardFooterComponent implements OnInit {
   ngOnInit() {
   }
   
-  exit(){
+  modalExit(){
     this._movie.basic = false;
     this._movie.currentMode = this.lastMode;
   }
@@ -62,7 +62,7 @@ export class MovieCardFooterComponent implements OnInit {
     this._user.faveMovie.overview = movie.overview;
     this._user.faveMovie.poster_path = movie.poster_path;
     this._user.addToFavorites()
-      .subscribe( res => {
+      .subscribe( (res:any) => {
         console.log(res.id, "model fave id")
         this._user.currentUserFavorites.push(res);
       })
@@ -110,7 +110,7 @@ export class MovieCardFooterComponent implements OnInit {
       })
   }
 
-  checkIfMovieIsFavorite: boolean(movie){
+  checkIfMovieIsFavorite(movie):boolean{
     var movieId;
     if(this.mode == "favorite"){
       movieId = movie.movieId;

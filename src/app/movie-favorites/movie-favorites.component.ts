@@ -11,12 +11,13 @@ import { Router} from '@angular/router';
 export class MovieFavoritesComponent implements OnInit {
 
   userFavoriteMovies : any; 
+  faveModelId : any;
   
   constructor(private _movie : MovieSearchService, private _user : UserService, private _router : Router) { }
 
   ngOnInit() {
     //console.log(this._user.isLoggedIn);
-    if(this._user.isLoggedIn._value){
+    if(this._user.isLoggedIn){
     this.getFavorites();
     }else{
       this._router.navigate(['/home']);
@@ -33,10 +34,10 @@ export class MovieFavoritesComponent implements OnInit {
     })
   }
   
-  getMovieDetails(movieId){
-    this._movie.getMovieDetails("movie", 1, movieId);
-    this.basic = true;
-  }
+  // getMovieDetails(movieId){
+  //   this._movie.getMovieDetails("movie", 1, movieId);
+  //   this.basic = true;
+  // }
   
   deleteFavorite(movieId){
     this._user.isFavorite = false;
