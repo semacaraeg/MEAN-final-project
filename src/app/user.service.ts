@@ -7,17 +7,18 @@ export class UserService {
   
   
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  isFavorite: boolean;
+  isFavorite: boolean = true;
   
   name : string = "";
   userControl : string = "Login";
+  currentUserFavorites : any;
   
   constructor(private _http: HttpClient) { }
  
   baseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/appUsers/";
   faveBaseUrl = "http://sarah-spring-2018-phortonssf.c9users.io:8080/api/favorites/";
   currentUser : any = {};
-  faveMovie : any ={isFavorite : false};
+  faveMovie : any= {};
   userFavoriteMovies : any;
   
   login(){
@@ -47,9 +48,9 @@ export class UserService {
     var userId = sessionStorage.getItem("userId");
     var accessToken = sessionStorage.getItem("token");
     this.faveMovie.userId = userId;
-     console.log(this.faveMovie, "info from user Service");
-    //return this._http.post(this.baseUrl + userId + "/favorites?access_token=" + accessToken, this.faveMovie);
-    return this._http.post(this.faveBaseUrl, this.faveMovie);
+    console.log(this.faveMovie, "info from user Service");
+    return this._http.post(this.baseUrl + userId + "/favorites?access_token=" + accessToken, this.faveMovie);
+    //return this._http.post(this.faveBaseUrl, this.faveMovie);
   }
   
   removeFromFavorites(id){

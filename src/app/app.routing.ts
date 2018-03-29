@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'moviedetails', component: MoviedetailsComponent}
+    {path: 'moviedetails', component: MoviedetailsComponent},
     {path: 'favorites', component: MovieFavoritesComponent}
 ];
 

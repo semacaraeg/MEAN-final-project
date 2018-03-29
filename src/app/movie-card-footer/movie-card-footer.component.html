@@ -1,6 +1,12 @@
 <button class="btn btn-sm btn-link" (click)="getMovieDetails()" >More Info</button>
-<button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="saveToFavorites(movie);"  [style.display]="(checkIfMovieIsFavorite(movie) || isFavorite === true) ? 'none' : 'inline-block'" >Add to Favorites</button>
-<button class="btn btn-sm btn-link" *ngIf="_user.isLoggedIn.value" (click)="deleteFavorite(movie)" [style.display]=" (isFavorite || checkIfMovieIsFavorite(movie))  ? 'inline-block' : 'none'">Remove from Favorites</button>
+
+<button class="btn btn-success btn-sm btn-link heart" *ngIf="_user.isLoggedIn.value" (click)="saveToFavorites(movie);"  [style.display]="( isFavorite || checkIfMovieIsFavorite(movie)) ? 'none' : 'inline-block'" >
+    <clr-icon shape="heart"></clr-icon>
+</button>
+
+<button class="btn btn-sm btn-link heart" *ngIf="_user.isLoggedIn.value" (click)="deleteFavorite(movie)" [style.display]=" ( checkIfMovieIsFavorite(movie) || isFavorite)  ? 'inline-block' : 'none'">
+    <clr-icon shape="heart" class="is-solid"></clr-icon>
+</button>
 
 <clr-modal [(clrModalOpen)]="_movie.basic" *ngIf="_movie.movieDetails != ''" [clrModalSize]="'md'">
     <h3 class="modal-title">{{ _movie.movieDetails.title }}</h3>
@@ -42,7 +48,7 @@
         </div><!--.card-block-->
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" (click)="exit()">Close</button>
+        <button type="button" class="btn btn-outline-success" (click)="modalExit()">Close</button>
         <!--<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>-->
     </div>
 </clr-modal>

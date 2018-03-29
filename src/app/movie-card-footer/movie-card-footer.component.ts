@@ -12,25 +12,25 @@ export class MovieCardFooterComponent implements OnInit {
 
   @Input() movie;
   @Input() mode : string;
-  
+
   lastMode = this._movie.currentMode;
-  isFavorite : boolean;
+  //isFavorite : boolean = false;
   safeUrl : any;
   movieId : number;
-  //userFavoriteMovies : any; 
+  //userFavoriteMovies : any;
   faveModelId : any;
-  isRemoved : boolean;
-  
+  isRemoved = false;
+
   constructor(private _movie : MovieSearchService, private _user: UserService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    //this._movie.getMovieDetails("movie", 1, this.movie.id);
   }
+  
   exit(){
     this._movie.basic = false;
     this._movie.currentMode = this.lastMode;
   }
-  
+
   getMovieDetails(){
     console.log(this.mode);
     //this._movie.currentMovieId = this.movie.id;
@@ -41,18 +41,22 @@ export class MovieCardFooterComponent implements OnInit {
     this._movie.getMovieDetails("movie", 1, this.movie.id);
     console.log(this.movie.id);
     }
-    
+
     this._movie.basic = true;
   }
+
   
   saveToFavorites(movie){
     console.log(this._user.isLoggedIn.value, "ifLoggedIn");
    // this.checkIfMovieIsFavorite(this.movieId);
     if(this.checkIfMovieIsFavorite(movie)){
       console.log("movie is already favorite");
+      this.isRemoved= false;
      }else{
-    console.log(this._user.currentUserFavorites, "user favorites");   
+    console.log(this._user.currentUserFavorites, "user favorites");
     this.isFavorite = true;
+    this.isRemoved= false;
+    this._user.faveMovie.is_favorite = true;
     this._user.faveMovie.title = movie.title;
     this._user.faveMovie.movieId = movie.id;
     this._user.faveMovie.overview = movie.overview;
@@ -64,16 +68,14 @@ export class MovieCardFooterComponent implements OnInit {
       })
    }
   }
-  
+
 
   deleteFavorite(movie){
-    if(this.isFavorite == ""){
-      this.isRemoved = true;
-    }
-    //console.log(this.isFavorite, "isFavorite when click delete");
+    
+    console.log(this.isFavorite, "isFavorite when click delete");
     this.isFavorite = false;
-   
-    let movieId;
+    this.isRemoved = true;
+    var movieId;
     if(this.mode == "favorite"){
       movieId = movie.movieId;
     }else{
@@ -87,38 +89,41 @@ export class MovieCardFooterComponent implements OnInit {
             this.getModelId(movieId);
     })
   }
-  
+
   getModelId(movieId){
-    for(let i=0; i< this._user.userFavoriteMovies.length; i++){
+    var removeIndex;
+    
+    for(var i=0; i< this._user.userFavoriteMovies.length; i++){
       if(this._user.userFavoriteMovies[i].movieId == movieId){
          this.faveModelId = this._user.userFavoriteMovies[i].id;
+         removeIndex = i;
       }
     }
       //console.log(this.faveModelId);
       this._user.removeFromFavorites(this.faveModelId)
       .subscribe( res => {
-       //this._user.userFavoriteMovies.splice(res, 1);
+        this._user.userFavoriteMovies.splice(removeIndex, 1);
+        this._user.currentUserFavorites.splice(removeIndex, 1);
+        //console.log(this._user.userFavoriteMovies.filter(movie => movie.id == this.faveModelId));
+        console.log(this._user.userFavoriteMovies);
         console.log(res , "REMOVE");
       })
-       this._user.userFavoriteMovies.filter(movie => movie.id == this.faveModelId);
   }
- 
-  checkIfMovieIsFavorite: boolean (movie){
-    let movieId;
+
+  checkIfMovieIsFavorite: boolean(movie){
+    var movieId;
     if(this.mode == "favorite"){
       movieId = movie.movieId;
     }else{
       movieId = movie.id;
     }
-    return this._user.currentUserFavorites.some( (p) =>{
+    return this._user.currentUserFavorites.some( p =>{
       return p.movieId === movieId;
     });
   }
+
  sanitizeVideo(videoUrl){
-   this.safeUrl=this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+ videoUrl);
+   this.safeUrl= this._sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+ videoUrl);
    console.log(this.safeUrl);
  }
- 
- 
-
 }

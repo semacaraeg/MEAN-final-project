@@ -38,9 +38,40 @@ export class MovieFavoritesComponent implements OnInit {
     this.basic = true;
   }
   
-  removeFromFavorites(id){
-    this._user.removeFromFavorites(id)
-      .subscribe( res => console.log(res))
+  deleteFavorite(movieId){
+    this._user.isFavorite = false;
+    this._user.getUserFavorites()
+      .subscribe((res : any )=> {
+            //console.log(res);
+            this._user.userFavoriteMovies = res;
+            console.log(this._user.userFavoriteMovies);
+            this.getModelId(movieId);
+    })
   }
+
+  getModelId(movieId){
+    var removeIndex;
+    
+    for(var i=0; i< this._user.userFavoriteMovies.length; i++){
+      if(this._user.userFavoriteMovies[i].movieId == movieId){
+         this.faveModelId = this._user.userFavoriteMovies[i].id;
+         removeIndex = i;
+      }
+    }
+      //console.log(this.faveModelId);
+      this._user.removeFromFavorites(this.faveModelId)
+      .subscribe( res => {
+        this._user.userFavoriteMovies.splice(removeIndex, 1);
+        this._user.currentUserFavorites.splice(removeIndex, 1);
+        //console.log(this._user.userFavoriteMovies.filter(movie => movie.id == this.faveModelId));
+        console.log(this._user.userFavoriteMovies);
+        console.log(res , "REMOVE");
+      
+        this.getFavorites();
+        
+        //this._movie.getMovies2(_movie.currentMode,_movie.currentPage, _movie.currentQuery);
+      })
+  }
+
 
 }

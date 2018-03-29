@@ -17,6 +17,4 @@ export class MovieListComponent implements OnInit {
   ngOnInit() {
     //this._movie.getMovies2("popular", 1, "");
   }
-  
-  
 }

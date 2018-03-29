@@ -1,20 +1,3 @@
-<!--<div class="centered">-->
-<!--    <section class="cards">-->
-<!--         <div class="card" *ngFor="let movie of userFavoriteMovies">-->
-            
-<!--                <div class="card-img">-->
-<!--                    <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">-->
-<!--                </div>-->
-<!--                <div class="card-block">-->
-<!--                    <p class="card-text">-->
-<!--                        {{ movie.title }}-->
-<!--                    </p>-->
-<!--                 </div>-->
-             
-<!--                <app-movie [movie]="movie" [mode]="'favorite'"></app-movie>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</div>-->
 <h2>My Favorite Movies</h2>
 <div class="row">
     
@@ -23,9 +6,20 @@
                 <img [src]=" (movie.poster_path == null) ? '../../images/moviedb.svg' : 'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
             </div>
             <div class="card-block">
-                 <p class="card-text">{{movie.title}}</p>
+                <div class="card-title">
+                {{movie.title}}
+                </div>
+                
+                <div class="card-footer">
+               
+                <button type="button" class="deleteBtn btn btn-sm btn-link" (click)="deleteFavorite(movie.movieId)">
+                        <clr-icon shape="minus-circle"></clr-icon>
+                        Remove
+                </button>
+                     <!--<button class="btn btn-sm btn-link" (click)="deleteFavorite(movie.movieId)">Remove</button>-->
+                </div>
             </div>
-           
-    
+            
+            
     </div>
 </div>
