@@ -41,7 +41,10 @@
             </div>
             <div  class="movie-video" *ngIf="_movie.movieDetails.videos.results.length > 0">
                 <h4>Watch Trailer</h4><br>
-                <iframe *ngIf="_movie.movieDetails.videos.results[0].key != null" [src]="_sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + _movie.movieDetails.videos.results[0].key)" frameborder="0" allowfullscreen width="500" height="300"></iframe>
+                <!--<app-spinner *ngIf="_movie.movieDetails.videos.results[0].key != null"></app-spinner>-->
+                
+                <iframe *ngIf="_movie.movieDetails.videos.results[0].key != null" [src]="_sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + _movie.movieDetails.videos.results[0].key)" frameborder="0" allowfullscreen width="500" height="300">
+                </iframe>
             <!--<iframe type="text/html" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen=""></iframe>-->
             </div>
             

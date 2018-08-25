@@ -23,7 +23,8 @@
                 <button  clrDropdownItem (click)="logout()"> Logout </button>  
                 </div>
                 <!--<label clrDropdownItem *ngIf = "_user.isLoggedIn">Hi, {{ _user.name }}</label>-->
-                <a href="#" [routerLink]="['/login']"  routerLinkActive="active" clrDropdownItem [style.visibility]="isLoggedIn ? 'hidden' : 'visible'"> Login </a>
+                <a href="#" [routerLink]="['/login']"  routerLinkActive="active" clrDropdownItem [style.display]="isLoggedIn ? 'none' : 'block'"> Login </a>
+                <a href="#" [routerLink]="['/register']"  routerLinkActive="active" clrDropdownItem [style.display]="isLoggedIn ? 'none' : 'block'"> Sign-Up </a>
             </clr-dropdown-menu>
         </clr-dropdown>
 

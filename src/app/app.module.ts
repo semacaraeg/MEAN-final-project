@@ -22,6 +22,7 @@ import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
 import { MovieComponent } from './movie/movie.component';
 import { MovieCardFooterComponent } from './movie-card-footer/movie-card-footer.component';
 import { MovieFavoritesComponent } from './movie-favorites/movie-favorites.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { MovieFavoritesComponent } from './movie-favorites/movie-favorites.compo
         MoviedetailsComponent,
         MovieComponent,
         MovieCardFooterComponent,
-        MovieFavoritesComponent
+        MovieFavoritesComponent,
+        SpinnerComponent
     ],
     imports: [
         BrowserAnimationsModule,
